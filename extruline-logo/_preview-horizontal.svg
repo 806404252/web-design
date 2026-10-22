@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720">
+  <rect x="0" y="0" width="1200" height="180" fill="#FFFFFF"/>
+  <rect x="0" y="180" width="1200" height="180" fill="#F1F5F9"/>
+  <rect x="0" y="360" width="1200" height="180" fill="#0B1F3A"/>
+  <rect x="0" y="540" width="1200" height="180" fill="#1E40AF"/>
+  <image href="extruderchina-horizontal-dark.png" x="110" y="15" width="980" height="150"/>
+  <image href="extruderchina-horizontal-dark.png" x="110" y="195" width="980" height="150"/>
+  <image href="extruderchina-horizontal-light.png" x="110" y="375" width="980" height="150"/>
+  <image href="extruderchina-horizontal-light.png" x="110" y="555" width="980" height="150"/>
+</svg>
