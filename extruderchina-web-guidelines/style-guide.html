@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extruder China — Visual Guidelines v1.0</title>
+<link rel="icon" href="assets/extruderchina-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--text-body); background: var(--bg-page); -webkit-font-smoothing: antialiased; }
+  .theme-dark { color: var(--text-body); }
+  h1, h2, h3, h4, .display, .h1, .h2, .h3, .h4 { font-family: var(--font-heading); color: var(--text-heading); }
+  .display { font-size: var(--fs-display); line-height: var(--lh-display); font-weight: 700; letter-spacing: -0.01em; }
+  .h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: 700; letter-spacing: -0.01em; }
+  .h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: 600; }
+  .h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 600; }
+  .h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: 600; }
+  .lead { font-size: var(--fs-lead); line-height: var(--lh-lead); }
+  .small { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--text-secondary); }
+  .label { font-size: var(--fs-label); line-height: var(--lh-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-link); }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 40px; }
+  section { padding: var(--section-y) 0; }
+  .alt { background: var(--bg-subtle); }
+  .section-head { margin-bottom: var(--space-7); max-width: 720px; }
+  .section-head .label { margin-bottom: var(--space-3); display: block; }
+  .section-head p { margin-top: var(--space-4); }
+  .rule { width: 48px; height: 3px; background: var(--gradient-flow); border-radius: 2px; margin-top: var(--space-4); }
+  .grid { display: grid; gap: var(--space-5); }
+  .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 10; height: var(--nav-height); background: #fff; border-bottom: 1px solid var(--border); }
+  .nav .container { height: 100%; display: flex; align-items: center; gap: var(--space-6); }
+  .nav img { height: 38px; }
+  .nav ul { display: flex; gap: var(--space-6); list-style: none; padding: 0; margin-left: auto; font-size: 15px; font-weight: 500; color: var(--navy-900); }
+  .nav li { cursor: pointer; } .nav li:hover { color: var(--teal-700); }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 22px; border-radius: var(--radius-pill); font: 600 16px/24px var(--font-body); border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
+  .btn .arr { transition: transform var(--dur-fast) var(--ease-out); } .btn:hover .arr { transform: translateX(4px); }
+  .btn:focus-visible { outline: 2px solid var(--teal-500); outline-offset: 2px; }
+  .btn-lg { height: 52px; padding: 0 28px; } .btn-sm { height: 36px; padding: 0 16px; font-size: 14px; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); } .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--navy-900); color: #fff; } .btn-secondary:hover { background: var(--navy-600); }
+  .theme-dark .btn-secondary { background: #fff; color: var(--navy-900); }
+  .btn-outline { border-color: var(--border-strong); color: var(--text-heading); background: transparent; } .btn-outline:hover { border-color: var(--text-heading); }
+  .btn-text { padding: 0; height: auto; background: none; color: var(--text-link); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 128px 0 112px; background: var(--bg-page); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 80% at 85% 40%, rgba(20,184,166,.12), transparent 60%); pointer-events: none; }
+  .hero .container { position: relative; z-index: 1; }
+  .hero .display { max-width: 760px; margin: var(--space-4) 0 var(--space-5); }
+  .hero .lead { max-width: 600px; margin-bottom: var(--space-6); }
+  .flow-line { position: absolute; right: -40px; top: 50%; width: 46%; height: 10px; border-radius: 999px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.18) 40%, var(--teal-400)); transform: translateY(-50%); }
+  .flow-line.l2, .flow-line.l3 { width: 34%; background: rgba(255,255,255,.10); }
+  .flow-line.l2 { top: calc(50% - 44px); } .flow-line.l3 { top: calc(50% + 44px); }
+  .stats { display: flex; gap: var(--space-8); margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border); }
+  .stats b { display: block; font: 700 36px/44px var(--font-heading); color: var(--text-heading); font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 14px; color: var(--text-secondary); }
+
+  /* Swatches */
+  .ramp { display: grid; grid-template-columns: repeat(11, 1fr); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: var(--space-3); }
+  .ramp.t { grid-template-columns: repeat(9, 1fr); }
+  .ramp div { height: 88px; padding: 10px; font-size: 11px; line-height: 15px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .ramp .key { box-shadow: inset 0 0 0 3px #fff; }
+  .ramp-title { display: flex; justify-content: space-between; margin: var(--space-6) 0 var(--space-3); }
+  .ramp-title b { color: var(--navy-900); font-weight: 600; }
+  .ratio { display: flex; height: 40px; border-radius: var(--radius-md); overflow: hidden; font-size: 13px; font-weight: 600; }
+  .ratio div { display: flex; align-items: center; padding: 0 14px; }
+  .pair { border-radius: var(--radius-lg); padding: var(--space-5); border: 1px solid var(--border); }
+  .pair .h4 { margin: 4px 0 8px; }
+  .tick { font-size: 12px; font-weight: 600; }
+
+  /* Type specimen */
+  .type-row { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-5); padding: var(--space-5) 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+  .type-row .meta { font-size: 13px; line-height: 20px; color: var(--text-secondary); }
+  .type-row .meta b { display: block; color: var(--navy-900); font-weight: 600; }
+
+  /* Cards */
+  .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .card .body { padding: var(--space-5); }
+  .card .h3, .card .h4 { margin: 8px 0 12px; }
+  .ph { aspect-ratio: 4/3; background: var(--gray-50); display: grid; place-items: center; color: var(--gray-400); font-size: 13px; }
+  .ph.wide { aspect-ratio: 16/9; background: linear-gradient(135deg, #1b3555, #0B1F3A); color: #8496AD; }
+  .ph svg { width: 62%; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-5); }
+  .chip { height: 28px; padding: 0 12px; border-radius: 999px; background: var(--gray-100); color: var(--navy-900); font-size: 13px; display: inline-flex; align-items: center; font-variant-numeric: tabular-nums; }
+  .chip.a { background: var(--teal-50); color: var(--teal-700); font-weight: 600; }
+
+  /* Form */
+  .form { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-lg); }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 14px; font-weight: 500; color: var(--navy-900); }
+  .field input, .field select, .field textarea { height: 48px; padding: 0 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-md); font: 400 16px var(--font-body); color: var(--navy-900); background: #fff; transition: border-color var(--dur-fast), box-shadow var(--dur-fast); }
+  .field textarea { height: 104px; padding: 12px 14px; resize: none; }
+  .field input:focus, .field select:focus, .field textarea:focus, .field .focus { outline: none; border-color: var(--teal-500); box-shadow: 0 0 0 3px rgba(20,184,166,.2); }
+  .field .err { border-color: var(--error); }
+  .field .msg { font-size: 14px; color: var(--error); }
+
+  /* Article */
+  .article { max-width: var(--container-article); }
+  .article p { font-size: var(--fs-article); line-height: var(--lh-article); margin-bottom: var(--space-5); }
+  .article h2 { font-size: 28px; line-height: 36px; font-weight: 600; margin: var(--space-6) 0 var(--space-4); }
+  .article blockquote { border-left: 3px solid var(--teal-500); background: var(--teal-50); padding: var(--space-4) var(--space-5); border-radius: 0 var(--radius-md) var(--radius-md) 0; color: var(--navy-900); margin-bottom: var(--space-5); }
+  .article a { color: var(--text-link); text-underline-offset: 3px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: var(--space-6); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+  th { background: var(--gray-50); color: var(--navy-900); font-weight: 600; text-align: left; }
+  th, td { height: 48px; padding: 0 16px; border-bottom: 1px solid var(--border); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .inquiry { background: var(--gray-50); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); border-left: 3px solid var(--teal-500); }
+  .progress { height: 3px; background: var(--gray-200); border-radius: 2px; margin-bottom: var(--space-6); }
+  .progress div { width: 42%; height: 100%; background: var(--gradient-flow); border-radius: 2px; }
+  .toc { position: sticky; top: 96px; font-size: 14px; line-height: 22px; border-left: 1px solid var(--border); }
+  .toc a { display: block; padding: 6px 0 6px 16px; color: var(--text-secondary); text-decoration: none; margin-left: -1px; border-left: 2px solid transparent; }
+  .toc a.on { color: var(--teal-700); border-left-color: var(--teal-500); font-weight: 500; }
+
+  /* Icon tiles */
+  .feat .ic { width: 48px; height: 48px; border-radius: var(--radius-lg); background: var(--teal-50); color: var(--teal-700); display: grid; place-items: center; margin-bottom: var(--space-4); }
+  .feat .h4 { margin-bottom: 8px; }
+
+  /* Footer */
+  footer { background: var(--navy-900); }
+  footer .top { padding-top: var(--space-8); padding-bottom: var(--space-8); display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--space-6); }
+  footer h4 { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--space-4); }
+  footer li { list-style: none; font-size: 14px; line-height: 32px; }
+  footer ul { padding: 0; }
+  footer .bottom { background: var(--navy-950); padding: var(--space-4) 0; font-size: 13px; color: #8496AD; }
+  .note { font-size: 13px; color: var(--text-secondary); margin-top: var(--space-4); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <img src="assets/extruderchina-horizontal-dark.svg" alt="Extruder China">
+    <ul><li>Products</li><li>Solutions</li><li>Services</li><li>Projects</li><li>Knowledge</li><li>About</li></ul>
+    <a class="btn btn-primary btn-sm" href="#">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero theme-dark">
+  <span class="flow-line l2"></span><span class="flow-line"></span><span class="flow-line l3"></span>
+  <div class="container">
+    <span class="label">Your Sourcing Partner in China</span>
+    <h1 class="display">Plastic Pelletizing &amp; Recycling Lines, Sourced and Inspected for You.</h1>
+    <p class="lead">We match your material and output to the right audited factory, inspect every machine before shipping, and stay with you through installation and after-sales.</p>
+    <div class="row">
+      <a class="btn btn-primary btn-lg" href="#">Get a Quote <span class="arr">→</span></a>
+      <a class="btn btn-outline btn-lg" href="#">View Products</a>
+    </div>
+    <div class="stats">
+      <div><b>30+</b><span>Audited factories</span></div>
+      <div><b>300+</b><span>Projects delivered</span></div>
+      <div><b>80+</b><span>Export countries</span></div>
+      <div><b>24h</b><span>Quotation response</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Color -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="label">01 · Color</span>
+      <h2 class="h2">Navy builds trust. Teal signals action.</h2>
+      <div class="rule"></div>
+      <p class="lead">Colors come directly from the logo. Neutral 70%, Navy 25%, Teal 5%.</p>
+    </div>
+
+    <div class="ramp-title"><b>Navy — Brand Primary</b><span class="small">900 = logo #0B1F3A</span></div>
+    <div class="ramp">
+      <div style="background:#F2F5F9;color:#0B1F3A">50<br>#F2F5F9</div>
+      <div style="background:#E3E9F1;color:#0B1F3A">100<br>#E3E9F1</div>
+      <div style="background:#C3CFDE;color:#0B1F3A">200<br>#C3CFDE</div>
+      <div style="background:#94A6BF;color:#0B1F3A">300<br>#94A6BF</div>
+      <div style="background:#5E7493;color:#fff">400<br>#5E7493</div>
+      <div style="background:#3A5170;color:#fff">500<br>#3A5170</div>
+      <div style="background:#233A5A;color:#fff">600<br>#233A5A</div>
+      <div style="background:#162C4A;color:#fff">700<br>#162C4A</div>
+      <div style="background:#0F2440;color:#fff">800<br>#0F2440</div>
+      <div class="key" style="background:#0B1F3A;color:#fff"><b>900</b>#0B1F3A</div>
+      <div style="background:#06132A;color:#fff">950<br>#06132A</div>
+    </div>
+
+    <div class="ramp-title"><b>Teal — Accent</b><span class="small">500 = logo #14B8A6 · text on teal is always Navy</span></div>
+    <div class="ramp t">
+      <div style="background:#F0FDFA;color:#0B1F3A">50<br>#F0FDFA</div>
+      <div style="background:#CCFBF1;color:#0B1F3A">100<br>#CCFBF1</div>
+      <div style="background:#99F6E4;color:#0B1F3A">200<br>#99F6E4</div>
+      <div style="background:#5EEAD4;color:#0B1F3A">300<br>#5EEAD4</div>
+      <div style="background:#2DD4BF;color:#0B1F3A">400<br>#2DD4BF</div>
+      <div class="key" style="background:#14B8A6;color:#0B1F3A"><b>500</b>#14B8A6</div>
+      <div style="background:#0D9488;color:#fff">600<br>#0D9488</div>
+      <div style="background:#0F766E;color:#fff">700<br>#0F766E</div>
+      <div style="background:#115E59;color:#fff">800<br>#115E59</div>
+    </div>
+
+    <div class="ramp-title"><b>Neutral &amp; Semantic</b><span class="small">cool gray, tuned to Navy</span></div>
+    <div class="ramp" style="grid-template-columns:repeat(11,1fr)">
+      <div style="background:#FFFFFF;color:#0B1F3A;box-shadow:inset 0 0 0 1px #E3E8EF">0<br>#FFFFFF</div>
+      <div style="background:#F5F7FA;color:#0B1F3A">50<br>#F5F7FA</div>
+      <div style="background:#EDF1F5;color:#0B1F3A">100<br>#EDF1F5</div>
+      <div style="background:#E3E8EF;color:#0B1F3A">200<br>#E3E8EF</div>
+      <div style="background:#CBD3DE;color:#0B1F3A">300<br>#CBD3DE</div>
+      <div style="background:#94A3B8;color:#0B1F3A">400<br>#94A3B8</div>
+      <div style="background:#5B6B80;color:#fff">500<br>#5B6B80</div>
+      <div style="background:#475569;color:#fff">600<br>#475569</div>
+      <div style="background:#16A34A;color:#fff">Success<br>#16A34A</div>
+      <div style="background:#D97706;color:#fff">Warning<br>#D97706</div>
+      <div style="background:#DC2626;color:#fff">Error<br>#DC2626</div>
+    </div>
+
+    <div class="ramp-title"><b>Color proportion</b></div>
+    <div class="ratio">
+      <div style="flex:70;background:#F5F7FA;color:#0B1F3A;box-shadow:inset 0 0 0 1px #E3E8EF">Neutral 70%</div>
+      <div style="flex:25;background:#0B1F3A;color:#fff">Navy 25%</div>
+      <div style="flex:5;background:#14B8A6;color:#0B1F3A;padding:0 6px">5%</div>
+    </div>
+
+    <div class="ramp-title"><b>Contrast check</b></div>
+    <div class="grid g4">
+      <div class="pair" style="background:#14B8A6;border-color:#14B8A6"><span class="tick" style="color:#0B1F3A">✓ 6.64 : 1</span><div class="h4" style="color:#0B1F3A">Navy on Teal</div><span style="color:#0B1F3A;font-size:14px">Primary button</span></div>
+      <div class="pair" style="background:#14B8A6;border-color:#14B8A6"><span class="tick" style="color:#fff">✕ 2.49 : 1</span><div class="h4" style="color:#fff">White on Teal</div><span style="color:#fff;font-size:14px">Never use</span></div>
+      <div class="pair"><span class="tick" style="color:#15803D">✓ 5.47 : 1</span><div class="h4" style="color:#0F766E">Teal 700 link</div><span class="small">Links on white</span></div>
+      <div class="pair" style="background:#0B1F3A;border-color:#0B1F3A"><span class="tick" style="color:#5EEAD4">✓ 9.35 : 1</span><div class="h4" style="color:#fff">#B8C4D4 body</div><span style="color:#B8C4D4;font-size:14px">Body on dark</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Typography -->
+<section class="alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">02 · Typography</span>
+      <h2 class="h2">Montserrat for headlines. Inter for reading.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="type-row"><div class="meta"><b>Display</b>Montserrat 700 · 56/64</div><div class="display">Extrusion Lines</div></div>
+    <div class="type-row"><div class="meta"><b>H1</b>Montserrat 700 · 44/52</div><div class="h1">PET Bottle Washing Line</div></div>
+    <div class="type-row"><div class="meta"><b>H2</b>Montserrat 600 · 36/44</div><div class="h2">Why Choose a Twin-Screw Extruder</div></div>
+    <div class="type-row"><div class="meta"><b>H3</b>Montserrat 600 · 24/32</div><div class="h3">Two-Stage Pelletizing Line for Film</div></div>
+    <div class="type-row"><div class="meta"><b>H4</b>Montserrat 600 · 20/28</div><div class="h4">How to Reduce PVC Contamination in PET Flakes</div></div>
+    <div class="type-row"><div class="meta"><b>Lead</b>Inter 400 · 18/30</div><div class="lead">Complete lines from mixing to winding, tuned to your raw material and output target.</div></div>
+    <div class="type-row"><div class="meta"><b>Body</b>Inter 400 · 16/26</div><div>A two-stage pelletizing line degasses printed and humid film twice, giving dense pellets with stable melt flow and fewer bubbles.</div></div>
+    <div class="type-row"><div class="meta"><b>Small</b>Inter 400 · 14/22</div><div class="small">Published Oct 22, 2026 · 8 min read</div></div>
+    <div class="type-row"><div class="meta"><b>Label</b>Inter 600 · 12/18 · caps</div><div class="label">PET Recycling</div></div>
+  </div>
+</section>
+
+<!-- Buttons -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="label">03 · Buttons</span>
+      <h2 class="h2">One primary action per view — always the inquiry.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="grid g2">
+      <div class="pair" style="padding:32px">
+        <p class="small" style="margin-bottom:16px">On light</p>
+        <div class="row">
+          <a class="btn btn-primary" href="#">Get a Quote <span class="arr">→</span></a>
+          <a class="btn btn-secondary" href="#">Download Catalog</a>
+          <a class="btn btn-outline" href="#">View Products</a>
+          <a class="btn btn-text" href="#">Read more <span class="arr">→</span></a>
+        </div>
+        <div class="row" style="margin-top:24px">
+          <a class="btn btn-primary btn-lg" href="#">Large 52</a>
+          <a class="btn btn-primary" href="#">Medium 44</a>
+          <a class="btn btn-primary btn-sm" href="#">Small 36</a>
+        </div>
+      </div>
+      <div class="pair theme-dark" style="padding:32px;background:var(--navy-900);border-color:var(--navy-900)">
+        <p class="small" style="margin-bottom:16px">On dark</p>
+        <div class="row">
+          <a class="btn btn-primary" href="#">Get a Quote <span class="arr">→</span></a>
+          <a class="btn btn-secondary" href="#">Download Catalog</a>
+          <a class="btn btn-outline" href="#">View Products</a>
+          <a class="btn btn-text" href="#">Read more <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards -->
+<section class="alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">04 · Cards</span>
+      <h2 class="h2">Products and knowledge, side by side.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ph"><svg viewBox="0 0 240 90" fill="none" stroke="#94A6BF" stroke-width="2" stroke-linecap="round"><rect x="10" y="30" width="70" height="34" rx="6"/><path d="M30 30V14h24v16"/><rect x="80" y="40" width="22" height="14" rx="3"/><path d="M102 47h128" stroke="#14B8A6" stroke-width="6"/><path d="M20 64v14M70 64v14"/></svg></div>
+        <div class="body"><span class="label">Recycling Lines</span><h3 class="h3">PET Bottle Washing Line</h3>
+          <div class="chips"><span class="chip">500–3000 kg/h</span><span class="chip">Bottle to flake</span><span class="chip a">Hot washing</span></div>
+          <a class="btn btn-text" href="#">View details <span class="arr">→</span></a></div>
+      </div>
+      <div class="card">
+        <div class="ph wide">Article cover 16:9</div>
+        <div class="body"><span class="chip a">Knowledge</span><h4 class="h4">Water Ring vs Strand Pelletizer: Which One Fits Your Material?</h4><span class="small">Oct 22, 2026 · 8 min read</span></div>
+      </div>
+      <div class="card">
+        <div class="ph wide">Article cover 16:9</div>
+        <div class="body"><span class="chip a">Industry News</span><h4 class="h4">2026 Recycled PET Prices: What Buyers Should Know</h4><span class="small">Oct 21, 2026 · 5 min read</span></div>
+      </div>
+    </div>
+    <div class="grid g4 feat" style="margin-top:64px">
+      <div><div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div><h4 class="h4">Turnkey Delivery</h4><p class="small">From layout design to on-site commissioning.</p></div>
+      <div><div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h4 class="h4">Custom Engineering</h4><p class="small">Screws and dies tuned to your formula.</p></div>
+      <div><div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></div><h4 class="h4">CE Certified</h4><p class="small">Factory acceptance test before shipping.</p></div>
+      <div><div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><h4 class="h4">Global Service</h4><p class="small">Remote support and spare parts in 72 hours.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Article + Form -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="label">05 · Article &amp; Inquiry</span>
+      <h2 class="h2">Readable like a journal. Ready to convert.</h2>
+      <div class="rule"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start">
+      <nav class="toc"><a href="#">Overview</a><a class="on" href="#">Key parameters</a><a href="#">Material guide</a><a href="#">Cost breakdown</a><a href="#">FAQ</a></nav>
+      <div class="article">
+        <div class="progress"><div></div></div>
+        <span class="small">Home / Knowledge / Recycling</span>
+        <h1 class="h1" style="margin:16px 0">How to Choose a PET Bottle Washing Line in 2026</h1>
+        <p>Start with your bale quality and the flake grade your buyers expect. A <a href="#">hot washing section</a> is essential if you sell flakes for bottle-to-bottle or fiber, because it removes glue and oil that cold washing leaves behind.</p>
+        <h2>Key parameters</h2>
+        <table>
+          <tr><th>Model</th><th class="n">Output (kg/h)</th><th class="n">Water (t/h)</th><th class="n">Power (kW)</th></tr>
+          <tr><td>PET-500</td><td class="n">500</td><td class="n">3</td><td class="n">280</td></tr>
+          <tr><td>PET-1000</td><td class="n">1,000</td><td class="n">5</td><td class="n">450</td></tr>
+          <tr><td>PET-2000</td><td class="n">2,000</td><td class="n">8</td><td class="n">720</td></tr>
+        </table>
+        <blockquote>Tip: test your local bales before sizing the line — label and cap content changes the whole washing layout.</blockquote>
+        <div class="inquiry">
+          <div><h4 class="h4">Planning a PET bottle recycling line?</h4><span class="small">Get a tailored quotation within 24 hours.</span></div>
+          <a class="btn btn-primary" href="#">Get a Quote <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:96px;align-items:center;gap:64px">
+      <div>
+        <span class="label">Inquiry form</span>
+        <h2 class="h2" style="margin:12px 0 16px">Tell us your material. We'll match the line.</h2>
+        <p class="lead">Labels above fields, focus in teal, errors in red. Few required fields, one clear submit.</p>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="grid g2" style="gap:16px">
+          <div class="field"><label>Name *</label><input value="Ahmed Hassan"></div>
+          <div class="field"><label>Email *</label><input class="focus" value="ahmed@company.com"></div>
+          <div class="field"><label>Country *</label><select><option>Egypt</option></select></div>
+          <div class="field"><label>WhatsApp</label><input class="err" value="+20 12"><span class="msg">Please enter a valid number</span></div>
+        </div>
+        <div class="field" style="margin-top:16px"><label>Message *</label><textarea>We need a PET bottle washing line, about 1,000 kg/h, hot washing.</textarea></div>
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:24px">Send Inquiry</button>
+        <p class="small" style="text-align:center;margin-top:12px">We reply within 24 hours. Your data stays private.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="theme-dark" style="background:var(--navy-900);padding:80px 0">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:32px">
+    <div><h2 class="h2">Ready to plan your recycling or pelletizing line?</h2><p class="lead" style="margin-top:12px">Tell us your material and output — we reply with a matched solution in 24 hours.</p></div>
+    <a class="btn btn-primary btn-lg" href="#">Get a Quote <span class="arr">→</span></a>
+  </div>
+</section>
+
+<footer class="theme-dark">
+  <div class="container top">
+    <div><img src="assets/extruderchina-horizontal-light.svg" alt="Extruder China" style="height:40px"><p class="small" style="margin-top:16px;max-width:280px">Your sourcing partner for plastic pelletizing and recycling machinery from China.</p></div>
+    <div><h4>Products</h4><ul><li>Pelletizing Lines</li><li>Recycling Lines</li><li>Auxiliary Machines</li><li>Spare Parts</li></ul></div>
+    <div><h4>Knowledge</h4><ul><li>Guides</li><li>Industry News</li><li>Troubleshooting</li><li>FAQ</li></ul></div>
+    <div><h4>Contact</h4><ul><li>sales@extruderchina.com</li><li>WhatsApp +86 000 0000</li><li>Jiangsu, China</li></ul></div>
+  </div>
+  <div class="bottom"><div class="container">© 2026 Extruder China. All rights reserved. — Visual Guidelines v1.0</div></div>
+</footer>
+</body>
+</html>
